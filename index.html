@@ -277,6 +277,395 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/21/CSAPP-ch2-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hehk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="learnAbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/21/CSAPP-ch2-1/" itemprop="url">
+                  CSAPP_ch2_1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-21 22:33:08 / Modified: 22:40:11" itemprop="dateCreated datePublished" datetime="2018-10-21T22:33:08+08:00">2018-10-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>许多操作系统使用8位的块作为最小可寻址内存单元，我们把内存看做一个很大的数组，最小可寻址单元的大小就是一个数组成员的大小。  </p>
+<h4 id="进制数转换"><a href="#进制数转换" class="headerlink" title="进制数转换"></a>进制数转换</h4><p>在机器的世界里，都是由一个一个位组成的，也就是bit，每一个位由两种状态（0/1），也就是说计算机的世界里所有的信息都是二进制的，我们现实中所有的信息都是可以转换成二进制来表示的。<br>由于我们系统是按照8位作为一个单元的，一个单元就可以用两个十六进制数来表示，这样更加方便进行保存信息。<br>常见的进制转换有:<br>二进制与十六进制之间的转换：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">四位二进制  --&gt;  一位十六进制</span><br><span class="line">一位十六进制  --&gt;  四位二进制</span><br></pre></td></tr></table></figure></p>
+<p>二进制与八进制之间的转换：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">三位二进制  --&gt;  一位八进制</span><br><span class="line">一位八进制  --&gt;  三位二进制</span><br></pre></td></tr></table></figure>
+<p>当然这其中的进制之间的转换过程都离不开我们十进制的参与，八进制中0~7对应的就是十进制的0~7，十六进制的0~f就是对应着十进制的0~15。其他进制数与十进制数的转换其实也是很简单的。<br>类比十进制的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">12345=1*10^4+2*10^3+3*10^2+4*10^1+5*10^0</span><br></pre></td></tr></table></figure></p>
+<p>x进制数12345有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">12345=1*x^4+2*x^3+3*x^2+4*x^1+5*x^0</span><br></pre></td></tr></table></figure></p>
+<p>反过来十进制转换其他进制用十进制数除以进制基数不停的取余数，先得到的余数是低位后得到的余数是高位的规则进行将余数排列，即得到了其他进制数。  </p>
+<h4 id="字数据大小"><a href="#字数据大小" class="headerlink" title="字数据大小"></a>字数据大小</h4><p>每个机器都有一个字长，用来指明指针数据的标称大小。简单的说，就是内存这个大数组的数组下标的最大值。虚拟地址就是按照这个来进行设定空间的最大大小的，虚拟地址的范围是0~2^w-1。<br>目前主流的是32位字长机器和64位字长机器。大多数64位机器可以运行32位机器编译的程序。<br>编译方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">linux&gt; gcc -m32 prog.c</span><br></pre></td></tr></table></figure></p>
+<p>这样的程序可以在32位或64位机器上运行。如使用下指令编译：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">linxu&gt; gcc -m64 prog.c</span><br></pre></td></tr></table></figure></p>
+<p>这样的程序只能在64位机器上运行。<br>对于数据类型，就会受机器字长的影响，如下表：</p>
+<table>
+<thead>
+<tr>
+<th>有符号</th>
+<th>无符号</th>
+<th>32</th>
+<th>64</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(signed)char</td>
+<td>unsigned char</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>short</td>
+<td>unsigned short</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>int</td>
+<td>unsigned int</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>long</td>
+<td>unsigned long</td>
+<td>4</td>
+<td>8</td>
+</tr>
+<tr>
+<td>int32_t</td>
+<td>uint32_t</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>int64_t</td>
+<td>uint64_t</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>char *</td>
+<td></td>
+<td>4</td>
+<td>8</td>
+</tr>
+<tr>
+<td>float</td>
+<td></td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td></td>
+<td>8</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h4 id="数据保存"><a href="#数据保存" class="headerlink" title="数据保存"></a>数据保存</h4><p>数据在磁盘上保存的时候是有大小端区别的，什么是大小端呢？<br>我们都知道最小寻址单元是一个字节，如果我是两个字节的数据0x1234，那么在磁盘上或者内存上怎么存？是|12|34| 还是|34|12|？这两种方式就是大小端模式。简单来说就是低位数据放在小地址的存储方式是小端存储，高位数据放在小地址的存储方式是大端存储。如果地址从左到右递增，对应上面的例子就是|12|34|是大端存储，|34|12|是小端存储。<br>如何判断系统是大端还是小段呢？我们可以写一个简单的程序来进行判断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    union &#123;</span><br><span class="line">        int i,</span><br><span class="line">        char c</span><br><span class="line">    &#125; u;</span><br><span class="line">    u.i = 1;</span><br><span class="line">    if(u.i == u.c)</span><br><span class="line">        printf(&quot;小端模式&quot;)；</span><br><span class="line">    else</span><br><span class="line">        printf(&quot;大端模式&quot;)；</span><br><span class="line">    return 0；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>union 数据有共同的起始地址，起始地址是最小的地址</em></p>
+<h4 id="布尔代数"><a href="#布尔代数" class="headerlink" title="布尔代数"></a>布尔代数</h4><p>二进制值是计算机编码、存储、和操作信息的核心，围绕数值0和1的研究已经演化出丰富的数学知识体系。这个研究是 <strong>乔治 · 布尔</strong> 的主要工作，因此称为<strong>布尔代数</strong> 。<br>布尔代数将0和1分别对应false和true。布尔运算主要有<strong>与、或、非、异或</strong>对应的符号分别是 <strong>“&amp; | ~ ^”</strong> 具体的运算方式如下：<br><strong>与</strong>：两个布尔数全为真时结果为真，否则为假。<br><strong>或</strong>：两个布尔数全为假时结果为假，否则为真。<br><strong>非</strong>：一个布尔数为假时结果为真，为真时结果为假。<br><strong>异或</strong>：两个布尔数相同时为假，不同时为真。<br>位向量的运算就是将两个向量的对应位进行上面的四种运算，也就是我们所说的按位运算。</p>
+<h4 id="C语言中的位运算"><a href="#C语言中的位运算" class="headerlink" title="C语言中的位运算"></a>C语言中的位运算</h4><p>C语言中的位运算需要两个数据类型一样的无符号整数进行操作，就是将两个数值对应位进行布尔运算，得到一个相同类型的数据。</p>
+<h4 id="C语言中的逻辑运算"><a href="#C语言中的逻辑运算" class="headerlink" title="C语言中的逻辑运算"></a>C语言中的逻辑运算</h4><p>逻辑运算的结果是布尔值，将两个数据先按规则转换成布尔值，然后进行布尔运算。这个规则是0值为false，其他值为true。</p>
+<h4 id="C语言中的移位运算"><a href="#C语言中的移位运算" class="headerlink" title="C语言中的移位运算"></a>C语言中的移位运算</h4><p>移位运算就是将数据的整体向左或右移动几个位。向左移k位，就是将最左边k位丢弃，最右补k个0，向右移k位就是将最右边k位丢弃，最左补k个0。<br>左移对应的数学运算是乘与2，移几位就是乘几个2，右移是除以2，移动几位就除以几个2，对应数学公式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x&lt;&lt;k = x*(2^k)  </span><br><span class="line"></span><br><span class="line">x&gt;&gt;k = x/(2^k)</span><br></pre></td></tr></table></figure>
+<p><em>未完待续。。。</em></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/14/CSAPP-ch1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hehk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="learnAbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/14/CSAPP-ch1/" itemprop="url">
+                  CSAPP_ch1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-14 22:32:54" itemprop="dateCreated datePublished" datetime="2018-10-14T22:32:54+08:00">2018-10-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-21 22:34:52" itemprop="dateModified" datetime="2018-10-21T22:34:52+08:00">2018-10-21</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>什么是计算机系统？计算机系统是由硬件和系统软件组成的，它们共同工作来运行应用程序。</p>
+<p>hello.c</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int mian()</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;hello,world\n&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="信息就是位-上下文"><a href="#信息就是位-上下文" class="headerlink" title="信息就是位+上下文"></a>信息就是位+上下文</h3><p>hello程序的源程序也就是hello.c的文本文件，里面的每一个字符通过ASCII码都有一个0~255的整数与其相对应，通过这种映射关系，文本里面就是一个个整数组成，将整数转换成8位的二进制数就是0和1的位序列。文本文件就是由0和1组成的位序列，而且8个位为一组，称为一个字节，一个字节表示一个字符。这样一个文本文件最总由0和1的位序列方式存储在磁盘上。<br>hello.c的表示方式表明：系统中所有的信息，都是由一串比特表示的。<br>对于上下文的理解：单纯的比特序列，放在计算机磁盘里面，仅仅是一个比特序列，没有其他的意思，只有在特定的地方才能表示不同的意义。在文本文件里面，它是一个个字符。在二进制文件里又表示一个个机器指令。这样能能给比特序列赋予不同意义的环境就叫上下文。</p>
+<h3 id="程序编译"><a href="#程序编译" class="headerlink" title="程序编译"></a>程序编译</h3><p>源程序→可执行程序的转化是由编译驱动器完成的。Linux&gt; gcc -o hello hello.c<br>编译的过程分为四个阶段：预处理器、编译器、汇编器、连接器。<br>预处理器(cpp)先处理#开头的语句，将头文件直接展开等。处理后生成以.i为扩展名的文件hello.i。<br>编译器(ccl)将文本文件hello.i文件翻译成文本文件hello.s，成为一个汇编语言的程序代码文件。<br>汇编器(as)将hello.s会变语言翻译成机器语言指令。将这些指令打包成一种可重定位目标程序格式。生成一个二进制文件hello.o。<br>连接器(ld)将我们生成的hello.o文件和标准库里面我们用到的.o文件进行合并处理，最终生成hello可执行目标文件，可以被加载到内存由系统进行运行。</p>
+<h3 id="hello程序运行与硬件的关系"><a href="#hello程序运行与硬件的关系" class="headerlink" title="hello程序运行与硬件的关系"></a>hello程序运行与硬件的关系</h3><p>系统的硬件组成包括：总线    I/O设备    主存    处理器<br>hello程序的运行：打开Linux终端(shell程序)，输入./hello然后回车键，hello程序就开始运行了。<br>从硬件的角度来看，键盘(I/O设备)通过总线接口将字符串”./hello”传输给shell程序，回车表示输入结束。shell通过一系列指令将hello可执行文件中的指令和数据从磁盘复制到主存中。之后处理器会执行hello程序中的main程序中的机器指令，这些指令会将“hello world \n”字符串的字节由主存复制到寄存器中，然后通过总线接口再由寄存器复制到显示设备，最终显示在屏幕上。</p>
+<h3 id="高速缓存的重要性"><a href="#高速缓存的重要性" class="headerlink" title="高速缓存的重要性"></a>高速缓存的重要性</h3><p>在hello程序运行的过程中，系统花费了大量的时间用于信息的复制(从一个地方复制到另一个地方)。这些复制就是开销，为了使这些复制操作尽快的完成，是程序设计者的主要目标。<br> 存储设备从小到大可分为 寄存器 SRAM DRAM 本地磁盘 服务器，当让价格也是由昂贵到便宜。其中SRAM就是高速缓存。</p>
+<p>L0寄存器是处理器直接读取使用的一块，这个能存放的数据很小，但是速度特别快，当然单比特造价也是很昂贵的。<br>L1~L3就是我们熟悉的三级缓存，高速缓存存放着处理器即将要使用的数据，在处理器需要的时候，以最快的速度将数据传输到寄存器中。<br>L4是主存，也就是我们电脑中的内存条，容量相对较大，但是和硬盘比起来还是小太多了，根据市场上内存条的价格和硬盘的价格你就可以知道单个比特造价的差异了。<br>L5就是我们的硬盘了，现在市场上由ssd和hhd，固态硬盘和机械硬盘。固态硬盘要比机械硬盘速度快，当然也更昂贵一些。这里注意一个特点：L0~L4都是断电即丢失数据，L5断电可以保存数据，前面都是帮助系统更快更好的运行的，硬盘才是存储数据的地方。<br>L6这个就是远程服务器了，我的觉得网盘也算吧，不过速度确实太慢了。</p>
+<h3 id="操作系统管理硬件"><a href="#操作系统管理硬件" class="headerlink" title="操作系统管理硬件"></a>操作系统管理硬件</h3><p>所有的应用程序在进行对硬件的操作尝试都必须经过操作系统，而不能直接读底层硬件进行操作。<br>操作系统的两个功能：(1)防止硬件被失控的应用程序滥用。(2)向应用程序提供简单一致的机制来控制复杂而又大不相同的低级硬件设备。 操作系统通过抽象概念(进程、虚拟内存、文件)来进行实现这两个功能。</p>
+<h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>进程是操作系统对一个正在运行的程序的一种抽象。一个系统可以同时运行多个进程，但是从进程的内部来看，就好像是独占着处理器，内存已经各种硬件。对于CPU来说，这样的并发操作是由处理器在各个进程之间频繁的切换执行实现的。这种进程间的切换被称为上下文切换。进程在被切换的时候，会保存当前进程的状态信息也就是上下文，然后回复要新的进程的上下文，开始运行新的进程。<br>进程与进程之间是并机的，进程中间又包含线程，也是一种并发运行的机制，一个进程的上线文对每个线程来说的是共享的，同事效率也更高。</p>
+<h3 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h3><p>虚拟内存这个抽象让每个进程都觉得自己在独占着整个主存。每个进程看到的内存都是一致的。虚拟地址空间又被分成了还几个区域。<br>程序代码和数据区： 程序和一些全局变量等，按照可执行目标文件来初始化的。<br>堆区：当程序调用malloc和free这样的库函数的时候，堆大小进行收缩。<br>共享库： 存放C标准库和数学库等共享库的代码和数据。<br>栈： 我们进行函数调用和函数退出的时候，栈空间进行扩展和收缩。<br>内核虚拟内存：不允许应用程序进行着区域的内容读写。应用程序必须调用内核提供的接口来进行操作。</p>
+<h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><p>Linux系统中  一切皆文件 。</p>
+<h3 id="系统间的网络通信"><a href="#系统间的网络通信" class="headerlink" title="系统间的网络通信"></a>系统间的网络通信</h3><p>网络可以看做是一个IO设备，当然一个设备也可以看做一个文件，当两个系统通过网络连接一起的时候，我们就可以通过对网络设备文件读写的方式进行网络通信。</p>
+<h3 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h3><p><strong>并发</strong>：指一个同时具有多个活动的系统。<br>并行：用并发来使一个系统运行的更快。<br>多核处理器：讲多个CPU集成到一个集成电路芯片上。<br><strong>超线程</strong>：是一个允许一个CPU执行对个控制流的技术。<br><strong>超标量处理器</strong>：处理器可以达到比一个周期一条指令更快的执行效率。<br><strong>单指令多数据并行</strong>：处理器用用特殊的硬件，允许一条指令产生多个可以并行指令的操作。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/14/README/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -591,7 +980,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -599,6 +988,19 @@
 
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
               
             </nav>
           

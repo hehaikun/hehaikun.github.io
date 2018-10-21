@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="什么是计算机系统？计算机系统是由硬件和系统软件组成的，它们共同工作来运行应用程序。 hello.c 123456#include &amp;lt;stdio.h&amp;gt;int mian()&amp;#123;    printf(&amp;quot;hello,world\n&amp;quot;);    return 0;&amp;#125; 信息就是位+上下文hello程序的源程序也就是hello.c的文本文件，里面的每一个字符通过">
+<meta name="keywords" content="CSAPP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP_ch1">
+<meta property="og:url" content="http://yoursite.com/2018/10/14/CSAPP-ch1/index.html">
+<meta property="og:site_name" content="learnAbit">
+<meta property="og:description" content="什么是计算机系统？计算机系统是由硬件和系统软件组成的，它们共同工作来运行应用程序。 hello.c 123456#include &amp;lt;stdio.h&amp;gt;int mian()&amp;#123;    printf(&amp;quot;hello,world\n&amp;quot;);    return 0;&amp;#125; 信息就是位+上下文hello程序的源程序也就是hello.c的文本文件，里面的每一个字符通过">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-21T14:34:52.474Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSAPP_ch1">
+<meta name="twitter:description" content="什么是计算机系统？计算机系统是由硬件和系统软件组成的，它们共同工作来运行应用程序。 hello.c 123456#include &amp;lt;stdio.h&amp;gt;int mian()&amp;#123;    printf(&amp;quot;hello,world\n&amp;quot;);    return 0;&amp;#125; 信息就是位+上下文hello程序的源程序也就是hello.c的文本文件，里面的每一个字符通过">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/14/CSAPP-ch1/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CSAPP_ch1 | learnAbit</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">learnAbit</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/14/CSAPP-ch1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hehk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="learnAbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSAPP_ch1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-14 22:32:54" itemprop="dateCreated datePublished" datetime="2018-10-14T22:32:54+08:00">2018-10-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-21 22:34:52" itemprop="dateModified" datetime="2018-10-21T22:34:52+08:00">2018-10-21</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>什么是计算机系统？计算机系统是由硬件和系统软件组成的，它们共同工作来运行应用程序。</p>
+<p>hello.c</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int mian()</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;hello,world\n&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="信息就是位-上下文"><a href="#信息就是位-上下文" class="headerlink" title="信息就是位+上下文"></a>信息就是位+上下文</h3><p>hello程序的源程序也就是hello.c的文本文件，里面的每一个字符通过ASCII码都有一个0~255的整数与其相对应，通过这种映射关系，文本里面就是一个个整数组成，将整数转换成8位的二进制数就是0和1的位序列。文本文件就是由0和1组成的位序列，而且8个位为一组，称为一个字节，一个字节表示一个字符。这样一个文本文件最总由0和1的位序列方式存储在磁盘上。<br>hello.c的表示方式表明：系统中所有的信息，都是由一串比特表示的。<br>对于上下文的理解：单纯的比特序列，放在计算机磁盘里面，仅仅是一个比特序列，没有其他的意思，只有在特定的地方才能表示不同的意义。在文本文件里面，它是一个个字符。在二进制文件里又表示一个个机器指令。这样能能给比特序列赋予不同意义的环境就叫上下文。</p>
+<h3 id="程序编译"><a href="#程序编译" class="headerlink" title="程序编译"></a>程序编译</h3><p>源程序→可执行程序的转化是由编译驱动器完成的。Linux&gt; gcc -o hello hello.c<br>编译的过程分为四个阶段：预处理器、编译器、汇编器、连接器。<br>预处理器(cpp)先处理#开头的语句，将头文件直接展开等。处理后生成以.i为扩展名的文件hello.i。<br>编译器(ccl)将文本文件hello.i文件翻译成文本文件hello.s，成为一个汇编语言的程序代码文件。<br>汇编器(as)将hello.s会变语言翻译成机器语言指令。将这些指令打包成一种可重定位目标程序格式。生成一个二进制文件hello.o。<br>连接器(ld)将我们生成的hello.o文件和标准库里面我们用到的.o文件进行合并处理，最终生成hello可执行目标文件，可以被加载到内存由系统进行运行。</p>
+<h3 id="hello程序运行与硬件的关系"><a href="#hello程序运行与硬件的关系" class="headerlink" title="hello程序运行与硬件的关系"></a>hello程序运行与硬件的关系</h3><p>系统的硬件组成包括：总线    I/O设备    主存    处理器<br>hello程序的运行：打开Linux终端(shell程序)，输入./hello然后回车键，hello程序就开始运行了。<br>从硬件的角度来看，键盘(I/O设备)通过总线接口将字符串”./hello”传输给shell程序，回车表示输入结束。shell通过一系列指令将hello可执行文件中的指令和数据从磁盘复制到主存中。之后处理器会执行hello程序中的main程序中的机器指令，这些指令会将“hello world \n”字符串的字节由主存复制到寄存器中，然后通过总线接口再由寄存器复制到显示设备，最终显示在屏幕上。</p>
+<h3 id="高速缓存的重要性"><a href="#高速缓存的重要性" class="headerlink" title="高速缓存的重要性"></a>高速缓存的重要性</h3><p>在hello程序运行的过程中，系统花费了大量的时间用于信息的复制(从一个地方复制到另一个地方)。这些复制就是开销，为了使这些复制操作尽快的完成，是程序设计者的主要目标。<br> 存储设备从小到大可分为 寄存器 SRAM DRAM 本地磁盘 服务器，当让价格也是由昂贵到便宜。其中SRAM就是高速缓存。</p>
+<p>L0寄存器是处理器直接读取使用的一块，这个能存放的数据很小，但是速度特别快，当然单比特造价也是很昂贵的。<br>L1~L3就是我们熟悉的三级缓存，高速缓存存放着处理器即将要使用的数据，在处理器需要的时候，以最快的速度将数据传输到寄存器中。<br>L4是主存，也就是我们电脑中的内存条，容量相对较大，但是和硬盘比起来还是小太多了，根据市场上内存条的价格和硬盘的价格你就可以知道单个比特造价的差异了。<br>L5就是我们的硬盘了，现在市场上由ssd和hhd，固态硬盘和机械硬盘。固态硬盘要比机械硬盘速度快，当然也更昂贵一些。这里注意一个特点：L0~L4都是断电即丢失数据，L5断电可以保存数据，前面都是帮助系统更快更好的运行的，硬盘才是存储数据的地方。<br>L6这个就是远程服务器了，我的觉得网盘也算吧，不过速度确实太慢了。</p>
+<h3 id="操作系统管理硬件"><a href="#操作系统管理硬件" class="headerlink" title="操作系统管理硬件"></a>操作系统管理硬件</h3><p>所有的应用程序在进行对硬件的操作尝试都必须经过操作系统，而不能直接读底层硬件进行操作。<br>操作系统的两个功能：(1)防止硬件被失控的应用程序滥用。(2)向应用程序提供简单一致的机制来控制复杂而又大不相同的低级硬件设备。 操作系统通过抽象概念(进程、虚拟内存、文件)来进行实现这两个功能。</p>
+<h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>进程是操作系统对一个正在运行的程序的一种抽象。一个系统可以同时运行多个进程，但是从进程的内部来看，就好像是独占着处理器，内存已经各种硬件。对于CPU来说，这样的并发操作是由处理器在各个进程之间频繁的切换执行实现的。这种进程间的切换被称为上下文切换。进程在被切换的时候，会保存当前进程的状态信息也就是上下文，然后回复要新的进程的上下文，开始运行新的进程。<br>进程与进程之间是并机的，进程中间又包含线程，也是一种并发运行的机制，一个进程的上线文对每个线程来说的是共享的，同事效率也更高。</p>
+<h3 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h3><p>虚拟内存这个抽象让每个进程都觉得自己在独占着整个主存。每个进程看到的内存都是一致的。虚拟地址空间又被分成了还几个区域。<br>程序代码和数据区： 程序和一些全局变量等，按照可执行目标文件来初始化的。<br>堆区：当程序调用malloc和free这样的库函数的时候，堆大小进行收缩。<br>共享库： 存放C标准库和数学库等共享库的代码和数据。<br>栈： 我们进行函数调用和函数退出的时候，栈空间进行扩展和收缩。<br>内核虚拟内存：不允许应用程序进行着区域的内容读写。应用程序必须调用内核提供的接口来进行操作。</p>
+<h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><p>Linux系统中  一切皆文件 。</p>
+<h3 id="系统间的网络通信"><a href="#系统间的网络通信" class="headerlink" title="系统间的网络通信"></a>系统间的网络通信</h3><p>网络可以看做是一个IO设备，当然一个设备也可以看做一个文件，当两个系统通过网络连接一起的时候，我们就可以通过对网络设备文件读写的方式进行网络通信。</p>
+<h3 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h3><p><strong>并发</strong>：指一个同时具有多个活动的系统。<br>并行：用并发来使一个系统运行的更快。<br>多核处理器：讲多个CPU集成到一个集成电路芯片上。<br><strong>超线程</strong>：是一个允许一个CPU执行对个控制流的技术。<br><strong>超标量处理器</strong>：处理器可以达到比一个周期一条指令更快的执行效率。<br><strong>单指令多数据并行</strong>：处理器用用特殊的硬件，允许一条指令产生多个可以并行指令的操作。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSAPP/" rel="tag"># CSAPP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/14/README/" rel="next" title="README">
+                <i class="fa fa-chevron-left"></i> README
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/21/CSAPP-ch2-1/" rel="prev" title="CSAPP_ch2_1">
+                CSAPP_ch2_1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Hehk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#信息就是位-上下文"><span class="nav-number">1.</span> <span class="nav-text">信息就是位+上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序编译"><span class="nav-number">2.</span> <span class="nav-text">程序编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hello程序运行与硬件的关系"><span class="nav-number">3.</span> <span class="nav-text">hello程序运行与硬件的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高速缓存的重要性"><span class="nav-number">4.</span> <span class="nav-text">高速缓存的重要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统管理硬件"><span class="nav-number">5.</span> <span class="nav-text">操作系统管理硬件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程"><span class="nav-number">6.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟内存"><span class="nav-number">7.</span> <span class="nav-text">虚拟内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件"><span class="nav-number">8.</span> <span class="nav-text">文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统间的网络通信"><span class="nav-number">9.</span> <span class="nav-text">系统间的网络通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要概念"><span class="nav-number">10.</span> <span class="nav-text">重要概念</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hehk</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
