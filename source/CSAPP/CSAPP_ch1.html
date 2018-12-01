@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSAPP_ch1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>CSAPP第一章：漫游计算机系统</h1>
+<p>什么是计算机系统？计算机系统是由硬件和系统软件组成的，它们共同工作来运行应用程序。</p>
+<p>hello.c</p>
+<hr />
+<pre><code>#include &lt;stdio.h&gt;
+int mian()
+{
+    printf(&quot;hello,world\n&quot;);
+    return 0;
+}
+</code></pre>
+
+<h3>信息就是位+上下文</h3>
+<p>hello程序的源程序也就是hello.c的文本文件，里面的每一个字符通过ASCII码都有一个0~255的整数与其相对应，通过这种映射关系，文本里面就是一个个整数组成，将整数转换成8位的二进制数就是0和1的位序列。文本文件就是由0和1组成的位序列，而且8个位为一组，称为一个字节，一个字节表示一个字符。这样一个文本文件最总由0和1的位序列方式存储在磁盘上。
+hello.c的表示方式表明：系统中所有的信息，都是由一串比特表示的。
+对于上下文的理解：单纯的比特序列，放在计算机磁盘里面，仅仅是一个比特序列，没有其他的意思，只有在特定的地方才能表示不同的意义。在文本文件里面，它是一个个字符。在二进制文件里又表示一个个机器指令。这样能能给比特序列赋予不同意义的环境就叫上下文。</p>
+<h3>程序编译</h3>
+<p>源程序→可执行程序的转化是由编译驱动器完成的。Linux&gt; gcc -o hello hello.c 
+编译的过程分为四个阶段：预处理器、编译器、汇编器、连接器。
+预处理器(cpp)先处理#开头的语句，将头文件直接展开等。处理后生成以.i为扩展名的文件hello.i。
+编译器(ccl)将文本文件hello.i文件翻译成文本文件hello.s，成为一个汇编语言的程序代码文件。
+汇编器(as)将hello.s会变语言翻译成机器语言指令。将这些指令打包成一种可重定位目标程序格式。生成一个二进制文件hello.o。
+连接器(ld)将我们生成的hello.o文件和标准库里面我们用到的.o文件进行合并处理，最终生成hello可执行目标文件，可以被加载到内存由系统进行运行。</p>
+<h3>hello程序运行与硬件的关系</h3>
+<p>系统的硬件组成包括：总线    I/O设备    主存    处理器 
+hello程序的运行：打开Linux终端(shell程序)，输入./hello然后回车键，hello程序就开始运行了。
+从硬件的角度来看，键盘(I/O设备)通过总线接口将字符串&quot;./hello&quot;传输给shell程序，回车表示输入结束。shell通过一系列指令将hello可执行文件中的指令和数据从磁盘复制到主存中。之后处理器会执行hello程序中的main程序中的机器指令，这些指令会将“hello world \n”字符串的字节由主存复制到寄存器中，然后通过总线接口再由寄存器复制到显示设备，最终显示在屏幕上。</p>
+<h3>高速缓存的重要性</h3>
+<p>在hello程序运行的过程中，系统花费了大量的时间用于信息的复制(从一个地方复制到另一个地方)。这些复制就是开销，为了使这些复制操作尽快的完成，是程序设计者的主要目标。<br />
+存储设备从小到大可分为 寄存器 SRAM DRAM 本地磁盘 服务器，当让价格也是由昂贵到便宜。其中SRAM就是高速缓存。
+<img src="image/speedram.png" />
+L0寄存器是处理器直接读取使用的一块，这个能存放的数据很小，但是速度特别快，当然单比特造价也是很昂贵的。<br />
+L1~L3就是我们熟悉的三级缓存，高速缓存存放着处理器即将要使用的数据，在处理器需要的时候，以最快的速度将数据传输到寄存器中。<br />
+L4是主存，也就是我们电脑中的内存条，容量相对较大，但是和硬盘比起来还是小太多了，根据市场上内存条的价格和硬盘的价格你就可以知道单个比特造价的差异了。<br />
+L5就是我们的硬盘了，现在市场上由ssd和hhd，固态硬盘和机械硬盘。固态硬盘要比机械硬盘速度快，当然也更昂贵一些。这里注意一个特点：L0~L4都是断电即丢失数据，L5断电可以保存数据，前面都是帮助系统更快更好的运行的，硬盘才是存储数据的地方。 <br />
+L6这个就是远程服务器了，我的觉得网盘也算吧，不过速度确实太慢了。</p>
+<h3>操作系统管理硬件</h3>
+<p>所有的应用程序在进行对硬件的操作尝试都必须经过操作系统，而不能直接读底层硬件进行操作。
+操作系统的两个功能：(1)防止硬件被失控的应用程序滥用。(2)向应用程序提供简单一致的机制来控制复杂而又大不相同的低级硬件设备。 操作系统通过抽象概念(进程、虚拟内存、文件)来进行实现这两个功能。
+<img src="image/program.png" /></p>
+<h3>进程</h3>
+<p>进程是操作系统对一个正在运行的程序的一种抽象。一个系统可以同时运行多个进程，但是从进程的内部来看，就好像是独占着处理器，内存已经各种硬件。对于CPU来说，这样的并发操作是由处理器在各个进程之间频繁的切换执行实现的。这种进程间的切换被称为上下文切换。进程在被切换的时候，会保存当前进程的状态信息也就是上下文，然后回复要新的进程的上下文，开始运行新的进程。
+进程与进程之间是并机的，进程中间又包含线程，也是一种并发运行的机制，一个进程的上线文对每个线程来说的是共享的，同事效率也更高。</p>
+<h3>虚拟内存</h3>
+<p>虚拟内存这个抽象让每个进程都觉得自己在独占着整个主存。每个进程看到的内存都是一致的。虚拟地址空间又被分成了还几个区域。
+程序代码和数据区： 程序和一些全局变量等，按照可执行目标文件来初始化的。
+堆区：当程序调用malloc和free这样的库函数的时候，堆大小进行收缩。
+共享库： 存放C标准库和数学库等共享库的代码和数据。
+栈： 我们进行函数调用和函数退出的时候，栈空间进行扩展和收缩。
+内核虚拟内存：不允许应用程序进行着区域的内容读写。应用程序必须调用内核提供的接口来进行操作。</p>
+<h3>文件</h3>
+<p>Linux系统中  一切皆文件 。</p>
+<h3>系统间的网络通信</h3>
+<p>网络可以看做是一个IO设备，当然一个设备也可以看做一个文件，当两个系统通过网络连接一起的时候，我们就可以通过对网络设备文件读写的方式进行网络通信。</p>
+<h3>重要概念</h3>
+<p><strong>并发</strong>：指一个同时具有多个活动的系统。<br />
+<strong>并行</strong>：用并发来使一个系统运行的更快。<br />
+<strong>多核处理器</strong>：讲多个CPU集成到一个集成电路芯片上。<br />
+<strong>超线程</strong>：是一个允许一个CPU执行对个控制流的技术。<br />
+<strong>超标量处理器</strong>：处理器可以达到比一个周期一条指令更快的执行效率。  <br />
+<strong>单指令多数据并行</strong>：处理器用用特殊的硬件，允许一条指令产生多个可以并行指令的操作。</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

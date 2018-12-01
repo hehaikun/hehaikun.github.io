@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>HEHK BLOG</title>
+<title>CSAPP_ch3_2</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
 /* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
@@ -289,24 +289,115 @@ img {
   max-width: 100%
 }
 </style>
-<h2>hehk blog</h2> <br />
 </head>
 <body>
-<h3>目录</h3>
-<ol>
-<li>随笔</li><br>
-<li>CSAPP<br />
-<a href="source/CSAPP/CSAPP_ch1.html">CSAPP第一章</a><br />
-<a href="source/CSAPP/CSAPP_ch2_1.html">CSAPP第二章(1)</a><br />
-<a href="source/CSAPP/CSAPP_ch2_2.html">CSAPP第二章(2)</a><br />
-<a href="source/CSAPP/CSAPP_ch3_1.html">CSAPP第三章(1)</a><br />  
-<a href="source/CSAPP/CSAPP_ch3_2.html">CSAPP第三章(2)</a><br /> 
-<a href="source/CSAPP/CSAPP_ch3_3.html">CSAPP第三章(3)</a><br /> 
-<a href="source/CSAPP/CSAPP_ch6.html">CSAPP第六章</a><br /> 
-</li>
-<li>C语言 </li><br>
-<li>shell</li><br>
-</ol>
+<h4>1. 数据的传输：</h4>
+<p>数据传输指令是mov，传输不同大小的数据有不同的后缀。movb-&gt;传输字节、movw-&gt;传输一个字、movl-&gt;传输双字、movq-&gt;传输四字、movabsq-&gt;传输绝对的四字。数据的传输就是将一个地址的内容复制到另一个地址。源操作数指定一个立即数，存储在内存中或者寄存器中，目的操作数指定一个地址位置，一个寄存器或者一个内存地址。值得注意的是在x86-64中，两个操作数不能都是内存地址，如果非要这样做需要两部 内存-&gt;寄存器-&gt;内存。</p>
+<h4>2. 压入和弹出栈：</h4>
+<p>栈是一种数据结构，遵循后进先出的原则。通过push操作将数据压入栈中，通过pop操作删除数据。“弹出的数据永远是最近被压入，而且仍在栈中的值”。 pushq-&gt;将四字压入栈，实际操作分两步，第一步将当前地址向后移四字，第二步将数据复制到当前地址中。popq-&gt;将四字弹出栈，也分为两步，第一步将当前地址上的值复制到目标地址中，第二步将当前地址向前移四字。  </p>
+<h4>3. 算术和逻辑操作</h4>
+<table>
+<thead>
+<tr>
+	<th>指令</th>
+	<th>效果</th>
+	<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>leaq S,D</td>
+	<td>D &lt;- &amp;S</td>
+	<td>加载有效地址</td>
+</tr>
+<tr>
+	<td>INC    D</td>
+	<td>D &lt;- D+1</td>
+	<td>加 1</td>
+</tr>
+<tr>
+	<td>DEC    D</td>
+	<td>D &lt;- D-1</td>
+	<td>减 1</td>
+</tr>
+<tr>
+	<td>NEG    D</td>
+	<td>D &lt;- -D</td>
+	<td>取负</td>
+</tr>
+<tr>
+	<td>NOT    D</td>
+	<td>D &lt;- ~D</td>
+	<td>取补</td>
+</tr>
+<tr>
+	<td>ADD  S,D</td>
+	<td>D &lt;- D+S</td>
+	<td>加</td>
+</tr>
+<tr>
+	<td>SUB  S,D</td>
+	<td>D &lt;- D-S</td>
+	<td>减</td>
+</tr>
+<tr>
+	<td>IMUL S,D</td>
+	<td>D &lt;- D*S</td>
+	<td>乘</td>
+</tr>
+<tr>
+	<td>XOR  S,D</td>
+	<td>D &lt;- D^S</td>
+	<td>异或</td>
+</tr>
+<tr>
+	<td>OR   S,D</td>
+	<td>D &lt;- D或S</td>
+	<td>或</td>
+</tr>
+<tr>
+	<td>AND  S,D</td>
+	<td>D &lt;- D&amp;S</td>
+	<td>与</td>
+</tr>
+<tr>
+	<td>SAL  k,D</td>
+	<td>D &lt;- D&lt;&lt;k</td>
+	<td>左移</td>
+</tr>
+<tr>
+	<td>SHL  k,D</td>
+	<td>D &lt;- D&lt;&lt;k</td>
+	<td>左移</td>
+</tr>
+<tr>
+	<td>SAR  k,D</td>
+	<td>D &lt;- D&gt;&gt;Ak</td>
+	<td>算术右移</td>
+</tr>
+<tr>
+	<td>SHR  k,D</td>
+	<td>D &lt;- D&gt;&gt;LK</td>
+	<td>逻辑右移</td>
+</tr>
+</tbody>
+</table>
+<p>加载有效地址指令leap和mov操作有点相似，leap指令能执行加法和有限形式的乘法。<br />
+一元和二元操作，一元操作是只有一个操作数，既是源又是目的。二元操作是第二个操作数既是源又是目的。<br />
+移位操作  先给出移位量，然后第二项是要移位的数。SAL和SHL都是左移，两个效果是一样的，右移SAR执行算术移位(填上符号位)，SHR执行逻辑移位。  </p>
+<h4>3. 条件码</h4>
+<p><strong>CF</strong> 进位标志。最近的操作数产生了进位，检查无符号操作的溢出。<br />
+<strong>ZF</strong> 零标志。最近的操作得出结果为零。<br />
+<strong>SF</strong> 符号标志。最近的操作得到的结果为负。<br />
+<strong>OF</strong> 溢出标志。最近的操作导致一个补码溢出---正溢出或负溢出。<br />
+设置条件码的指令有cmp比较指令和test测试指令。只设置条件码不改变目的寄存器的值。<br />
+访问条件码用set类命令，当某种条件设置某个值。  </p>
+<h4>4.跳转指令</h4>
+<p>正常情况下指令是一条挨着一条执行的，跳转指令会导致切换到程序中的一个全新的位置。汇编代码中，要跳转的目的地址通常用一个标号进行指明，标号是人为指定的，指令是jmp。<br />
+我个人觉得，跳转指令是我们构建工程的纽带，包括循环，条件控制，函数调用应该都离不开跳转，有了跳转我们的代码才算是有了灵魂，有了思维。<br />
+后面的条件判断循环都是利用这个跳转进行操作的，详情请查看CSAPP原文，这里不做太多的介绍了。  </p>
+<h4>5. 阶段总结</h4>
+<p>这一周主要是进行这些基本指令的了解，对照C语言中的实现，你才会知道为什么指针是C语言的精华了，因为汇编对任何数值进场操作都是先拿到地址，然后操作这个地址上的数值的。还是建议大家在学习C语言的时候一定要好好学习一下指针这一块的内容。下周继续学习CSAPP。</p>
 
 </body>
 </html>

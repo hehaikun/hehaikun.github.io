@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSAPP_ch6</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h3>存储器层次结构</h3>
+<p>这里先说一下存储器系统：<br />
+<strong>寄存器 -----&gt;  高速缓存 -----&gt;  主存储</strong><br />
+存储器对程序的性能有着巨大的影响，程序的运行就是对数据的不停的计算和搬移，其中最为耗时的就是程序对数据的搬移。因此，存储器对数据的存取速度是至关重要的。<br />
+CPU在访问寄存器中的数据只需要一个周期就可以访问到，在高速缓存中需要4-75个周期，如果在主存器上则需要上百个周期，如果在磁盘上则需要几千万个周期。<br />
+<strong>如果你理解了系统是如何将数据在存储器结构层次中上上下下移动的，你就可以编写自己的应用程序，使它们的数据存储在较高层次结构的地方，在那里CPU能更快的访问。</strong></p>
+<p><strong>先展示出这我们要说的结构图：</strong>  </p>
+<p><img src="image/storage_struct.png" />  </p>
+<h4>随机访问存储器</h4>
+<h5>静态RAM</h5>
+<p>静态RAM(SRAM),将一个位存储在一个双稳态的存储器单元里面，每个单元由6个晶体管组成。 <br />
+SRAM得存储单元具有双稳态特性。只要有电，它就会永远的保存它的值，即使有干扰来扰乱电压，当干扰消除之后，电路就会恢复到稳定值。  </p>
+<h5>动态RAM</h5>
+<p>动态RAM(DRAM),将每个位存储为对一个电容充电，电容小到30毫微法拉的电容。DRAM造的非常密集，每个单元由一个电容和一个访问晶体管组成。<br />
+DRAM存储单元对干扰非常敏感，当电容的电压被扰乱之后，它就永远不会恢复了，暴露在光线下也会导致电压改变。由于很多原因会导致电容漏电，所以使得DRAM单元在10-100毫秒时间失去电荷，由于计算机运行周期是以纳秒来衡量的，所以内存系统周期性的将DRAM中的数据读出来在写进去重新刷新内存每一位就可以了。<br />
+这种需要动态刷新的存储RAM就被称为动态RAM（DRAM）。  </p>
+<h5>传统的DRAM</h5>
+<p>DRAM芯片中的单元被分成d个超单元，每个超单元都由w个DRAM单元组成。一个d*w的DRAM共存储了dw位信息。<br />
+这一部分比较难懂，主要是它描述的不清，我这里说一说我的理解：<br />
+一个DRAM总量被分为d个超单元，这d个超单元是以阵列的形式排列的，d的大小由行r和列c来决定，一般情况r=c=2的addr次方。假设地址线有a根，能传过来的最大地址值就是2的a次方，就可以表示2的a次方个行，2的a次方个列的一个矩阵，所以d就等于2的a次方的平方。每个超单元由w个DRAM基本单元组成，DRAM基本单元应该就是一个位。也就是一个超单元由w位组成，w的大小就应该看数据线的位数了。w=data位数。<br />
+以上是我的理解，欢迎一起探讨这一点。</p>
+<p>DRAM被连接到内存控制器上之后，通过数据线每次传输w位数据。具体地址通过地址线发送两次地址数据，分别表示行和列，通过矩阵坐标来确定。第一次发送行地址称为RAS，获得行地址之后，将对应的行数据全部复制到内部行缓冲区，然后在获得列地址，通过内部行缓冲区中找到对应数据，通过数据线发送出去到内存控制器。  </p>
+<h5>内存模块</h5>
+<p>DRAM芯片封装在内存模块中，它以64位为块传送数据到内存控制器和从内存控制器传出数据。下图展示了内存模块传输数据的基本思想。<br />
+<img src="image/ReadDRAM.png" /><br />
+上图由8个DRAM组成一个整体，八个DRAM共用地址线，每个DRAM中一个超单元八根数据线，组合起来就是64根数据线，传输的64bit的数据也是八个DRAM中相同坐标的超单元的8位数据组成。 </p>
+<h5>增强的DRAM</h5>
+<p>市场上有很多种类的DRAM，每一种都是生产厂家基于传统的DRAM单元，并进行了一些优化，提高访问基本DRAM单元的速度。 </p>
+<ul>
+<li>快页模式DRAM(TPM DRAM)。传统的DRAM将超单元的一整行复制到它的内部行缓冲区中，只用一个其他丢弃。FPMDRAM允许对同一行连续访问可以直接从行缓冲区里面获得，改进了这一点，提高了访问速度。  </li>
+<li>扩展数据输出DRAM(EDO DRAM)。这是对FPM DRAM的一种增强形式，它允许各个CAS信号在时间上更紧凑一些。  </li>
+<li>同步DRAM(SDRAM)。常规的，FPM和EDO DRAM都是异步的。SDRAM采用与驱动内存控制器相同的外部时钟信号的上升沿来代替这样的许多控制信号。效果是同步的比异步的更快的输出超单元的内容。  </li>
+<li>双倍数据速率同步DRAM(DDR SDRAM)。是对SDRAM的一种增强，它通过两个时钟沿作为控制信号，使DRAM的速度翻倍。  </li>
+<li>视频RAM(VRAM)。它用在图形系统的帧缓冲区中。VRAM的思想与FPM DRAM类似。1）VRAM的输出是通过依次对内部缓冲区的整个内容进行移位得到的。2）VRAM允许对内存并行的读写。 </li>
+</ul>
+<h5>非易失性存储器</h5>
+<p>如果断电，DRAM和SRAM会丢失他们的信息。也就是它们属于易失的存储器。非易失的被称为制度存储器(ROM),实际上它们也是可读可写的。  </p>
+<ul>
+<li>PROM 只能被编程一次。  </li>
+<li>EPROM 可编程1000多次。</li>
+<li>EEPROM 可编程次数达到10的5次方次。</li>
+<li>闪存(flash memory) 是一类非易失性存储器，基于EEPROM，已经成为一种重要的存储技术。</li>
+</ul>
+<h5>访问主存</h5>
+<p>数据流都是通过总线在处理器和DRAM主存之间来来回回传输数据的。每次传输数据的过程被称为总线事务，读事务：从主存传送数据到CPU。写事务：从CPU传输数据到主存。<br />
+读写事务都需要三步骤来进行：将地址放到总线上，读出地址，复制数据。   </p>
+<h4>磁盘存储</h4>
+<p>磁盘能保存大量的数据，读取速度是毫秒级的，比DRAM慢了10万倍，比SRAM慢了100万倍。</p>
+<h5>磁盘的构造</h5>
+<p>磁盘是由多个盘片构成的，一个盘片有两个盘面，一个盘面上面有很多同心圆的磁道，磁道上面又分为许多个扇区，所有盘面上相同半径的磁道集合成为一个柱面。盘片以一个固定的旋转速率进行旋转（5400~15000转每分钟）。  </p>
+<h5>磁盘的容量</h5>
+<p>一个错可以记录的最大位数称为它的最大容量，也就是我们说的容量。容量的决定因素有：  </p>
+<ul>
+<li>记录密度  磁道一英寸中可以存放的数据位数。  </li>
+<li>磁道密度  从磁盘中心出发，在半径上一英寸的段内可以有的磁道数量。</li>
+<li>面密度    记录密度和磁道密度的乘积。  </li>
+</ul>
+<p>因为一个磁盘有多个盘片，一个盘片有两个盘面，一个盘面上有很多磁道，每个磁道上有很多个扇区，一个扇区上存储一定的字节数。因此磁盘容量的计算公式如下。<br />
+磁盘容量 = 每扇区的字节数 * 每磁道的扇区数 * 每盘面的磁道数 * 每盘片的盘面数 * 磁盘的盘片总数  </p>
+<h5>磁盘操作</h5>
+<p>磁盘可以用来读数据，写数据。使用<strong>读写头</strong>来进行读写数据。读写头连接到一个传动臂的一端，通过沿着半径轴前后移动，这个传动臂，驱动器可以将读写头定位在盘面的任何磁道上，这样的机械运动称为寻道。
+读写头定位到期望的磁道上后，当磁道上的每一位通过它下面时读写头可以感知到这个位的值，也可以修改这个位的值。磁盘以扇区大小的块来读写数据，对扇区访问的时间，有三个主要的部分：  </p>
+<ul>
+<li>寻道时间  读去目标扇区的内容，传动臂移动到对应的磁道上所需要的时间，称为寻道时间。  </li>
+<li>旋转时间  读写头到达期望的磁道后，等待磁盘旋转到目标扇区的第一个位置所需要的时间，称为旋转时间。  </li>
+<li>传送时间  当目标扇区的第一位处于读写同下方时，驱动器开始读写数据，一个扇区数据的传送时间依赖于旋转速度和每个磁道的扇区数目。  </li>
+</ul>
+<h5>逻辑磁盘块</h5>
+<p>磁盘的构造如此的复杂，操作系统看到的可不是这样的，在操作系统来看，磁盘就就是一个逻辑块序列，逻辑块的编号为0，1，2，... ，MAX-1。每个逻辑的大小等于一个扇区的大小。<br />
+这样的逻辑块序列是怎么实现的呢？    原来磁盘上封装了一个小的硬件设备叫<strong>磁盘控制器</strong>。是它在维护着逻辑块号与真实的磁盘扇区之间的映射关系。当操作系统要进行读写某一个逻辑块时，磁盘控制器将逻辑块号翻译成(盘面，磁道，扇区)三元组，然后可以唯一的标识对应的物理扇区。然后进行操作。  </p>
+<h5>连接IO设备</h5>
+<p>I/O设备是一个统称，其包括图形卡，监视器，鼠标，键盘和磁盘这样的输入输出设备，都是同过I/O总线连接到CPU和主存上。<br />
+主机总线适配器将一个或多个磁盘连接到I/O总线，使用的是一个特别的主机总线接口定义的通信协议。有两个常用的磁盘接口是SCSI和SATA。SCSI磁盘通常比SATA磁盘驱动器更快但也更贵。SCSI主机总线适配器可以支持多个磁盘驱动器，SATA适配器只能支持一个驱动器。</p>
+<h5>访问磁盘</h5>
+<p>这里简单的说一下磁盘的访问吧，对于磁盘数据的读过程如下：  </p>
+<ol>
+<li>CPU通过将命令、逻辑块号和目的内存地址写到与磁盘相关联的内存映射地址，发起一个磁盘读。  </li>
+<li>磁盘控制器开始读扇区，并执行到主存的DMA传送。  </li>
+<li>当DMA传送完成时，磁盘控制器使用中断的方式通知CPU。  </li>
+</ol>
+<h4>固态硬盘</h4>
+<p>固态硬盘（SSD）是一种基于闪存的技术。其结构如下图：<br />
+<img src="image/SSD.png" /><br />
+其中的闪存翻译层和传统的旋转磁盘的磁盘控制器的功能相类似。<br />
+SSD的读写性能都比传统的旋转磁盘要好，在未来是传统磁盘的替代品。  </p>
+<h4>局部性</h4>
+<p>一个编写良好的计算机程序肯定是具有良好的局部性的。那么怎么定位良好的局部性呢？<br />
+<strong>局部性原理</strong>：计算机程序倾向于引用临近于其他最近引用过的数据项的数据项，或者最近引用过的数据项本身。这种倾向性被称为局部性原理。<br />
+局部性分为时间局部性和空间局部性。在良好的时间局部性中，被引用过一次的内存位置很可能在不远的将来再被多次引用。在良好的空间局部性中，一个内存位置被引用了一次，那么程序很可能在不远的将来引用其附近的一个内存位置。  </p>
+<h5>对数据引用引起的局部性</h5>
+<p>我们先看一段求和代码：  </p>
+<pre><code>int sumvec(int v[N])
+{
+    int i, sum = 0;
+
+    for(i = 0; i &lt; N; i++)
+    {
+        sum += v[i];
+    }
+    return sum;
+}
+</code></pre>
+
+<p>对于数组来说，因为数组的地址是连续的，而且每次取得数组地址都是挨个连续取，所以具有良好的空间局限性。但是每个变量只取出使用一次，所以时间局限性很差。同样对于sum变量，for循环中连续被取用，所以具有良好的时间局限性。sum是一个标量，所以没有空间局限性。  </p>
+<p>我们来看二维数组的求和代码：<br />
+代码一：  </p>
+<pre><code>int sumArrR(int a[M][N])
+{
+    int i, j, sun = 0;
+
+    for(i = 0; i &lt; M; i++)
+    {
+        for(j = 0; j &lt; N; j++)
+        {
+            sum += a[i][j];
+        }
+    }
+    return sum;
+}
+</code></pre>
+
+<p>代码二：  </p>
+<pre><code>int sumArrC(int a[M][N])
+{
+    int i, j, sum = 0;
+
+    for(j = 0; j &lt; N; j++)
+    {
+        for(i = 0; i &lt; M; i++)
+        {
+            sum += a[i][j];
+        }
+    }
+    return sum;
+}
+</code></pre>
+
+<p>对比两段代码，功能都是将数组里所有数值的和。就单从数组来说，在空间局限性上，代码二的空间局限性很差，因为数组的读取地址不连续，是跳着读的。相比之下，代码一的的空间局限性就很好，每次读取的数组数据都是连续地址上的。时间局限性上都还好，这里就不分析了。<br />
+看上去差别很小，在代码实际运行中，执行效率就会差很多。所以我们编程的时候，稍微注意一下，就能提升代码的性能。  </p>
+<p>评价程序中局部性的一些原则：  </p>
+<ul>
+<li>重复引用相同变量的程序具有良好的时间局部性。  </li>
+<li>对于具有步长为k的引用模式的程序，步长越小空间局部性越好，具有步长为1的引用模式的程序有很好的空间局部性。在内存中以大步长跳来跳去的程序，空间局部性会很差。  </li>
+<li>对于取指令来说，循环有好的时间局部性和空间局部性。循环体越小，循环迭代次数越多，局部性越好。  </li>
+</ul>
+<h4>存储器层次结构中的缓存</h4>
+<p>存储器结构的中心思想是，对于每个k，位于k层的更快更小的存储设备作为位于k+1层的更大更慢存储设备的缓存。依次类推，直到最小缓存---CPU寄存器组。k层缓存着k+1层的一个子集。</p>
+<h5>缓存命中</h5>
+<p>如果程序需要第k+1层的某一个数据对象d，它会首先在当前存储的k层查找d，如果d刚好在k层中，就是我们说的缓存命中。这样比去k+1层读取数据要快得多。  </p>
+<h5>缓存不命中</h5>
+<p>如果程序没有在k层中找到对象d，就是我们说的缓存不命中，这样就会去k+1层读取出包含d的数据块，然后保存到k层的缓存中，如果k层的缓存区满，那么会覆盖掉一个缓存区的块。  </p>
+<h5>缓存不命中的种类</h5>
+<p>k层本来就是空的导致的数据不命中称为 <strong>冷不命中</strong>。<br />
+只要不命中就会执行某个放置策略，将k+1层的数据放在k层缓存区中，由于放置策略引起的不命中称为 <strong>冲突不命中</strong>。<br />
+当访问的工作集大小超过了缓存大小时，缓存会经历 <strong>容量不命中</strong>。也就是缓存太小了，不能处理这个工作集。  </p>
+<h5>缓存管理</h5>
+<p>存储器层次结构的本质是，每一层存储设备都是低一层的缓存。缓存管理就是要将缓存划分成块，在不同层之间传输块，判定是否命中并处理它们。管理缓存的逻辑可以是硬件，软件或者两者的结合。大多数时候，缓存是自动运行的。不需要我们代码中显示的去行动。</p>
+<h4>小结</h4>
+<p>这一篇主要是介绍一下存储器的种类，特点，以及一些细节功能。可以更加了解存储是怎么一回事，其实这里面介绍的还只是一些大概。真正存储是怎么存储数据的，这些数据在存储器上是以怎么样的一种形式存储的，还需要我么自己去找资料了解。当然，我们在写代码的时候，直接基于文件系统上面将内容写入某一个文件中就可以了，底层是怎么管理的压根接触不到。稍微底层点的程序员可能会对存储块进行操作，同样还是调用内核的读写接口，进行块设备的文件进行读写。但是，关于磁盘的一些基本认识，我们还是有必要去了解一下的，因为这样能更好的理解我们的程序是怎么运行的，也可以从根本上去优化我们代码的效率。</p>
+<p><em>本文来自《深入理解计算机系统》 第六章 存储器层次结构</em></p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
