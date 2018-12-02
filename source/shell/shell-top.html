@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>shell-top</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h2>shell命令------top总结</h2>
+<p>前几天调程序性能的时候使用到了top这个命令，觉得从这个命令中，我们能看到很多信息。top的功能也是很强大的，之前一直不了解，只是简单的使用top命令显示进程信息，接下就学一学top命令的详细用法。  </p>
+<h3><strong>最基本的使用方法：</strong></h3>
+<p>在Linux终端窗口上输入top命令：</p>
+<pre><code>root@hehk:~# top  
+</code></pre>
+
+<p>按下回车键之后会弹出一个实时刷新的列表如下图：  </p>
+<p><img src="image/top.jpg" />  </p>
+<p>然后我们看看显示的都是些什么东西：<br />
+<strong>第一行</strong>：</p>
+<table>
+<thead>
+<tr>
+	<th>top</th>
+	<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>17:34:08</td>
+	<td>系统时间</td>
+</tr>
+<tr>
+	<td>39min</td>
+	<td>当前系统运行时长</td>
+</tr>
+<tr>
+	<td>3 user</td>
+	<td>用户数目</td>
+</tr>
+<tr>
+	<td>load average</td>
+	<td>平均负载</td>
+</tr>
+</tbody>
+</table>
+<p><strong>系统时间</strong> 对于我们来说用处不大，我们可以使用date命令获取更详细的时间<br />
+<strong>当前系统运行时长</strong> 可以通过这个时间来推断我们的系统启动的时间。如果是服务器的话，就可知道上次重启的时间。<br />
+<strong>用户数</strong> 可以知道当前有几个用户的程序在运行。<br />
+<strong>平均负载</strong> 这个相对来说是比较重要的指标了，从图中我们可以看到后面有三个数字，第一个是最近1分钟内的平均负载，第二个是最近5分钟的平均负载，第三个是最近15分钟的平均负载。<br />
+平局负载的常用分析方法：<br />
+load average数据是每隔5秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑CPU的数量，结果高于5的时候就表明系统在超负荷运转了。<br />
+如果发现一分钟内的平均负载很大，五分钟内的平均负载较小，十五分钟内的平均负载很小，说明一分钟到五分钟内有程序出现异常，导致负载过大。  </p>
+<p><strong>第二行</strong>：  </p>
+<table>
+<thead>
+<tr>
+	<th>tasks</th>
+	<th>任务相关</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>197 total</td>
+	<td>总进程个数</td>
+</tr>
+<tr>
+	<td>1 running</td>
+	<td>运行状态进程数</td>
+</tr>
+<tr>
+	<td>116 sleeping</td>
+	<td>睡眠状态进程数</td>
+</tr>
+<tr>
+	<td>0 stopped</td>
+	<td>停止状态进程数</td>
+</tr>
+<tr>
+	<td>0 zombie</td>
+	<td>僵尸进程数</td>
+</tr>
+</tbody>
+</table>
+<p>这一行都是任务相关的东西，从不同的状态的数目分析，我们可以知道整个系统进程的运行情况。这里面的僵尸进程的数目一般为0，如果发现不为0，而且数量还很多的时候，很有可能是代码中子进程退出的时候，父进程没有做回收资源，导致子进程一直处于僵尸进程状态。这时候我们要查看一下僵尸进程的pid和ppid来判断是父进程是谁，然后在代码中定位。  </p>
+<p><strong>第三行</strong>：  </p>
+<table>
+<thead>
+<tr>
+	<th>%CPU(s)</th>
+	<th>cpu使用百分比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>0.2 us</td>
+	<td>用户空间占用CPU的百分比</td>
+</tr>
+<tr>
+	<td>0.2 sy</td>
+	<td>内核空间占用CPU的百分比</td>
+</tr>
+<tr>
+	<td>0.0 ni</td>
+	<td>改变过优先级的进程占用CPU的百分比</td>
+</tr>
+<tr>
+	<td>99.6 id</td>
+	<td>空闲CPU百分比</td>
+</tr>
+<tr>
+	<td>0.0 wa</td>
+	<td>IO等待占用CPU的百分比</td>
+</tr>
+<tr>
+	<td>0.0 hi</td>
+	<td>硬中断（Hardware IRQ）占用CPU的百分比</td>
+</tr>
+<tr>
+	<td>0.0 si</td>
+	<td>软中断（Software Interrupts）占用CPU的百分比</td>
+</tr>
+<tr>
+	<td>0.0 st</td>
+	<td>窃取时间占用CPU百分比</td>
+</tr>
+</tbody>
+</table>
+<p>这一行是关于CPU状态的，我么你可以清楚的看到CPU的状态情况，cpu占用较高的进程需要重点关注一下了。  </p>
+<p><strong>第四行</strong></p>
+<table>
+<thead>
+<tr>
+	<th>KiB Mem</th>
+	<th>内存状态信息(kib为单位)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>total</td>
+	<td>物理内存总量</td>
+</tr>
+<tr>
+	<td>free</td>
+	<td>空闲内存总量</td>
+</tr>
+<tr>
+	<td>used</td>
+	<td>使用中的内存总量</td>
+</tr>
+<tr>
+	<td>buff/cache</td>
+	<td>缓存的内存量</td>
+</tr>
+</tbody>
+</table>
+<p>当一个进程运行一段试讲就挂掉，我们就需要注意一下这一行，有可能是程序OOM(out of memory)了，当空闲内存容量等于0的时候，系统会杀掉一些进程来保证内存可用，一般情况是优先杀掉内存占用高的进程。  </p>
+<p><strong>第五行</strong></p>
+<table>
+<thead>
+<tr>
+	<th>KiB Swap</th>
+	<th>swap交换分区信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>total</td>
+	<td>交换区总量</td>
+</tr>
+<tr>
+	<td>free</td>
+	<td>空闲交换区总量</td>
+</tr>
+<tr>
+	<td>used</td>
+	<td>使用的交换区总量</td>
+</tr>
+<tr>
+	<td>avail Mem</td>
+	<td>有效内存容量</td>
+</tr>
+</tbody>
+</table>
+<p><strong>主要列表</strong></p>
+<table>
+<tbody>
+<tr>
+	<td>PID</td>
+	<td>进程的ID号，简称PID是进程的唯一标识</td>
+</tr>
+<tr>
+	<td>USER</td>
+	<td>进程所属用户</td>
+</tr>
+<tr>
+	<td>PR</td>
+	<td>进程的优先级</td>
+</tr>
+<tr>
+	<td>NI</td>
+	<td>nice值---负值表示高优先级，正值表示低优先级</td>
+</tr>
+<tr>
+	<td>VIRT</td>
+	<td>进程使用的虚拟内存总量 =swap+res</td>
+</tr>
+<tr>
+	<td>RES</td>
+	<td>进程使用的、未被换出的物理内存大小 =code+data</td>
+</tr>
+<tr>
+	<td>SHR</td>
+	<td>共享内存大小</td>
+</tr>
+<tr>
+	<td>S</td>
+	<td>进程状态。D=不可中断的睡眠状态 R=运行 S=睡眠 T=跟踪/停止 Z=僵尸进程</td>
+</tr>
+<tr>
+	<td>%CPU</td>
+	<td>上次更新到现在的CPU时间占用百分比</td>
+</tr>
+<tr>
+	<td>%MEM</td>
+	<td>进程使用的物理内存百分比</td>
+</tr>
+<tr>
+	<td>TIME+</td>
+	<td>进程使用的CPU时间总计，单位1/100秒</td>
+</tr>
+<tr>
+	<td>COMMAND</td>
+	<td>进程名称（命令名/命令行）</td>
+</tr>
+</tbody>
+</table>
+<p>OK整个top命令的界面我们介绍完了，我们可以通过主表中找到我们自己的进程，分析进程的各项指标来了解自己项目代码的运行状态。</p>
+<h3><strong>进阶-top参数的使用方法</strong></h3>
+<h4>&lt;1&gt; top + 参数</h4>
+<p><strong>$ 版本信息</strong>  </p>
+<pre><code>top -v  
+top -h
+### 这两个命令的功能是一样的，都是输出top的版本信息。  
+</code></pre>
+
+<p><strong>$ 刷新时间</strong></p>
+<pre><code>top -d num  
+### -d的参数后面必须加时间，以秒为单位。然后界面以设定的时间刷新。 
+top -s   
+### -s 后面不能加参数 默认为5秒。然后界面以5秒时间刷新。
+</code></pre>
+
+<p><strong>$ 指定刷新次数</strong></p>
+<pre><code>top -n num
+### 后面的num就是刷新的次数，比如 `top -n 5` 界面就会刷新5次后退出。
+</code></pre>
+
+<p><strong>$ 显示某个用户下的进程</strong></p>
+<pre><code>top -u username
+### 会显示我们指定用户下的进程状态。
+</code></pre>
+
+<p><strong>$ 显示指定的进程信息</strong></p>
+<pre><code>top -p pid  
+### pid 就是我么指定进程的pid号。
+</code></pre>
+
+<p><strong>$ 显示完整用户名/命令</strong></p>
+<pre><code>top -c
+</code></pre>
+
+<p><strong>$ 以积累模式显示程序信息</strong></p>
+<pre><code>top -S
+</code></pre>
+
+<p><strong>$ 关闭交互式指令</strong></p>
+<pre><code>top -s
+### 交互式指令不能使用了
+</code></pre>
+
+<p><strong>$ 以批处理模式显示程序信息</strong></p>
+<pre><code>top -b
+### 刷屏打印程序信息，比较适合输入日志文件。
+</code></pre>
+
+<p><strong>$ 隐藏空闲的任务</strong></p>
+<pre><code>top -i
+</code></pre>
+
+<p><strong>$ 按照某种属性排序</strong></p>
+<pre><code>top -O
+### 这个可以打印出可排序的属性列列表
+top -o  columns
+### 例如 top -o %CPU 就可以按照CPU使用率来排序显示
+</code></pre>
+
+<p><strong>一般这种命令直接加参数的形式使用的较少，通常使用交互式命令比较多。</strong></p>
+<h4>&lt;2&gt; top 交互</h4>
+<p><strong>显示帮助页面</strong></p>
+<p>h和？都可以进帮助页面，这里面介绍了很多交互命令，有不懂的可以直接按h来获得帮助。<br />
+下面我就简单介绍几个有意思的和有用的交互命令。</p>
+<p><strong>改变主题颜色</strong> </p>
+<p>按下小z，我们发现界面颜色变了，再按一下小z就会还原，一般默认的颜色是红色。可以按大Z进入设置界面如下：</p>
+<p><img src="image/color.jpg" />  </p>
+<ul>
+<li>S M H T 来选择要设置的目标区域  </li>
+<li>0-7 八种颜色主题可以选择预览  </li>
+<li>q或enter 返回保存当前设置的颜色主题</li>
+<li>a或w可以切换主题</li>
+</ul>
+<p><strong>高亮主排序的列</strong></p>
+<p>按下小x会发现有一列高亮，默认是cpu的列，因为默认是按CPU使用率排序的，我们可以按shift+&lt;或shift+&gt; 进行排序列的切换，这个功能很方便，也很常用。  </p>
+<p><strong>CPU的使用情况</strong></p>
+<p>数字1可以将CPU展开，显示每一个CPU的使用情况。
+t可以用进度条的形式显示CPU的使用情况。</p>
+<p><strong>内存的使用情况</strong></p>
+<p>m可以让内存的状态，以进度条的形式显示。</p>
+<p><strong>其他常用交互命令</strong></p>
+<pre><code>Ctrl+L   擦除并且重写屏幕。 
+h或者?    显示帮助画面，给出一些简短的命令总结说明。 
+k        终止一个进程。系统将提示用户输入需要终止的进程PID，以及需要发送给该进程什么样的信号。一般的终止进程可以使用15信号；如果不能正常结束那就使用信号9强制结束该进程。默认值是信号15。在安全模式中此命令被屏蔽。 
+i        忽略闲置和僵死进程。这是一个开关式命令。 
+q        退出程序。 
+r        重新安排一个进程的优先级别。系统提示用户输入需要改变的进程PID以及需要设置的进程优先级值。输入一个正值将使优先级降低，反之则可以使该进程拥有更高的优先权。默认值是10。 
+S        切换到累计模式。 
+s        改变两次刷新之间的延迟时间。系统将提示用户输入新的时间，单位为s。如果有小数，就换算成m s。输入0值则系统将不断刷新，默认值是5 s。需要注意的是如果设置太小的时间，很可能会引起不断刷新，从而根本来不及看清显示的情况，而且系统负载也会大大增加。 
+f或者F    从当前显示中添加或者删除项目。 
+o或者O    改变显示项目的顺序。 
+l        切换显示平均负载和启动时间信息。 
+m        切换显示内存信息。 
+t        切换显示进程和CPU状态信息。 
+c        切换显示命令名称和完整命令行。 
+M        根据驻留内存大小进行排序。 
+P        根据CPU使用百分比大小进行排序。 
+T        根据时间/累计时间进行排序。 
+W        将当前设置写入~/.toprc文件中。这是写top配置文件的推荐方法。
+</code></pre>
+
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

@@ -41,7 +41,7 @@ linxu> gcc -m64 prog.c
 对于数据类型，就会受机器字长的影响，如下表：
 
 有符号|无符号|32|64  
----|---|---|---| 
+---|---|---|--- 
 (signed)char|unsigned char|1|1
 short|unsigned short|2|2
 int|unsigned int|4|4
