@@ -24,7 +24,7 @@
 
 - [AgilePPP-敏捷开发](source/AgilePPP/AgilePPP_ch1_5.md)
 - [AgilePPP-第一次编程实践](source/AgilePPP/AgilePPP_ch6.md)
-
+- [AgilePPP-敏捷设计1](source/AgilePPP/AgilePPP_ch7_9.md)
 ## C/C++
 
 -   
