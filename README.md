@@ -25,6 +25,8 @@
 - [AgilePPP-敏捷开发](source/AgilePPP/AgilePPP_ch1_5.md)
 - [AgilePPP-第一次编程实践](source/AgilePPP/AgilePPP_ch6.md)
 - [AgilePPP-敏捷设计1](source/AgilePPP/AgilePPP_ch7_9.md)
+- [AgilePPP-敏捷设计2](source/AgilePPP/AgilePPP_ch10_12.md)
+- [AgilePPP-薪水支付案例研究(模式分析)](source/AgilePPP/AgilePPP_ch13_17.md)
 ## C/C++
 
 -   
