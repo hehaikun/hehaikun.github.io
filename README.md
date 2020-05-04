@@ -7,18 +7,6 @@
 
 -   
 
-## C/C++
-
--   
-
-## SHELL
-
-- [shell命令之top](source/shell/shell-top.md)
-
-## LeetCode
-
-- [18.四数之和](source/LeetCode/18.四数之和.md)
-
 ## CSAPP  
 
 - [CSAPP第一章](source/CSAPP/CSAPP_ch1.md) 
@@ -43,8 +31,10 @@
 - [AgilePPP-敏捷设计2](source/AgilePPP/AgilePPP_ch10_12.md)
 - [AgilePPP-薪水支付案例研究(模式分析)](source/AgilePPP/AgilePPP_ch13_17.md)
 - [AgilePPP-薪水支付案例研究(第一次迭代)](source/AgilePPP/AgilePPP_ch18.md)
+## C/C++
 
+-   
 
+## SHELL
 
-
-
+- [shell命令之top](source/shell/shell-top.md)
