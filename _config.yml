@@ -1,4 +1,5 @@
 # Setup
+theme: jekyll-theme-cayman
 title:        HeaiKun Learnning
 tagline:      A responsive theme for your project on GitHub Pages
 baseurl:      "http://heaikun.com"
