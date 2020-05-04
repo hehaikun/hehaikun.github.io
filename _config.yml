@@ -3,17 +3,9 @@ theme: jekyll-theme-cayman
 title:        HeaiKun Learnning
 tagline:      技术栈： Linux C C++ shell Python 等. 生命不息，思考不止！ 
 baseurl:      "http://heaikun.com"
-paginate:     5
-locale:       "en"
+
 
 # About/contact
 author:
   name:       hehk/heaikun
   url:        http://heaikun.com
-
-# Gems
-gems:
-  - jekyll-paginate
-
-#Others
-markdown: kramdown
