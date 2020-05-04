@@ -18,6 +18,7 @@
 ## LeetCode
 
 - [18.四数之和](source/LeetCode/18.四数之和.md)
+- [45.跳跃游戏II](source/LeetCode/跳跃游戏II.md)
 
 ## CSAPP  
 
