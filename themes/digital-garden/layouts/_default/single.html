@@ -213,6 +213,15 @@
                     {{ .Content }}
                 </div>
 
+                {{ if .Params.categories }}
+                <div class="article-categories">
+                    <strong>分类：</strong>
+                    {{ range .Params.categories }}
+                    <a href="/categories/{{ . | urlize }}/" style="color: #667eea; text-decoration: none; font-weight: 500;">{{ . }}</a>
+                    {{ end }}
+                </div>
+                {{ end }}
+
                 {{ if .Params.tags }}
                 <div class="article-tags">
                     <strong>标签：</strong>

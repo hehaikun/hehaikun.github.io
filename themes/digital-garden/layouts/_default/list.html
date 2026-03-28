@@ -197,6 +197,14 @@
                     {{ if .Summary }}
                     <p class="post-excerpt">{{ .Summary }}</p>
                     {{ end }}
+                    {{ if .Params.categories }}
+                    <div class="post-categories">
+                        <span style="color: #666; font-size: 0.85rem;">分类：</span>
+                        {{ range .Params.categories }}
+                        <a href="/categories/{{ . | urlize }}/" style="color: #667eea; text-decoration: none; font-weight: 500; margin-right: 0.5rem;">{{ . }}</a>
+                        {{ end }}
+                    </div>
+                    {{ end }}
                     {{ if .Params.tags }}
                     <div class="post-tags">
                         {{ range .Params.tags }}

@@ -22,9 +22,13 @@ defaultContentLanguage = "zh"
     url = "/posts/"
     weight = 2
   [[menu.main]]
+    name = "分类"
+    url = "/categories/"
+    weight = 3
+  [[menu.main]]
     name = "关于"
     url = "/about/"
-    weight = 3
+    weight = 4
 
 # 标签分类
 [taxonomies]
