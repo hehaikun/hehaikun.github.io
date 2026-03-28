@@ -1,4 +1,4 @@
-baseURL = "https://yourusername.github.io/"
+baseURL = "https://hehaikun.github.io/"
 title = "我的技术博客"
 theme = "digital-garden"
 languageCode = "zh-CN"
@@ -6,10 +6,10 @@ defaultContentLanguage = "zh"
 
 # 网站配置
 [params]
-  author = "你的名字"
+  author = "hehaikun"
   description = "分享技术与思考"
-  github = "yourusername"
-  linkedin = "yourusername"
+  github = "hehaikun"
+  linkedin = "hehaikun"
 
 # 菜单配置
 [menu]
