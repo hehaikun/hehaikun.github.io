@@ -1,0 +1,32 @@
+baseURL = "https://yourusername.github.io/"
+title = "我的技术博客"
+theme = "digital-garden"
+languageCode = "zh-CN"
+defaultContentLanguage = "zh"
+
+# 网站配置
+[params]
+  author = "你的名字"
+  description = "分享技术与思考"
+  github = "yourusername"
+  linkedin = "yourusername"
+
+# 菜单配置
+[menu]
+  [[menu.main]]
+    name = "首页"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "文章"
+    url = "/posts/"
+    weight = 2
+  [[menu.main]]
+    name = "关于"
+    url = "/about/"
+    weight = 3
+
+# 标签分类
+[taxonomies]
+  tag = "tags"
+  category = "categories"
